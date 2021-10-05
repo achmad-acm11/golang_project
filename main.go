@@ -27,7 +27,7 @@ func main() {
 	router := app.NewRouter(categoryController)
 
 	server := http.Server{
-		Addr:    "https://golang-project-test.herokuapp.com",
+		Addr:    "golang-project-test.herokuapp.com",
 		Handler: middleware.NewAuthMiddleware(router),
 	}
 
