@@ -1,0 +1,224 @@
+{
+    "openapi":"3.0.2",
+    "info": {
+        "title":"Category RESTful API",
+        "description": "API Spec for Category RESTful API",
+        "version":"1.0"
+    },
+    "servers": [
+        {"url":"http://localhost:3000/api"}
+    ],
+    "paths": {
+        "/categories":{
+            "get":{
+                "tags": ["Category API"],
+                "description": "List All Categories",
+                "summary": "List All Categories",
+                "responses": {
+                    "200":{
+                        "description": "Success Get All Categories",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "code":{
+                                            "type": "number"
+                                        },
+                                        "status":{
+                                            "type": "string"
+                                        },
+                                        "data":{
+                                            "type": "array",
+                                            "items":{
+                                                "$ref": "#/components/schemas/Category"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post":{
+                "tags": ["Category API"],
+                "summary": "Create Category",
+                "description": "Create Category",
+                "requestBody":{
+                    "description": "Input Data Category",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/inputDataCategory"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "Success Create Category",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "code":{
+                                            "type": "number"
+                                        },
+                                        "status":{
+                                            "type": "string"
+                                        },
+                                        "data":{
+                                            "$ref":"#/components/schemas/Category"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/{categoryId}":{
+            "get":{
+                "tags": ["Category API"],
+                "description": "Get Data Category",
+                "summary": "Get Data Category",
+                "parameters": [
+                    {
+                        "$ref" : "#/components/parameters/PathParamsCategory"
+                    }
+                ],
+                "responses": {
+                    "200" : {
+                        "description": "Success Get Data Category",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "code":{
+                                            "type": "number"
+                                        },
+                                        "status":{
+                                            "type": "string"
+                                        },
+                                        "data":{
+                                            "$ref" : "#/components/schemas/Category"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put":{
+                "tags": ["Category API"],
+                "description": "Update Category",
+                "summary": "Update Category",
+                "parameters": [
+                    {
+                        "$ref" : "#/components/parameters/PathParamsCategory"
+                    }
+                ],
+                "requestBody":{
+                    "description": "Input Data",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref" : "#/components/schemas/inputDataCategory"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "Success Update Category",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "code":{
+                                            "type": "number"
+                                        },
+                                        "status":{
+                                            "type": "string"
+                                        },
+                                        "data":{
+                                            "$ref":"#/components/schemas/Category"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "tags": ["Category API"],
+                "description": "Delete Category",
+                "summary": "Delete Category",
+                "parameters": [
+                    {
+                        "$ref" : "#/components/parameters/PathParamsCategory"
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "Success Delete",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "code":{
+                                            "type": "number"
+                                        },
+                                        "status":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Category":{
+                "type": "object",
+                "properties": {
+                    "id":{
+                        "type": "number"
+                    },
+                    "name":{
+                        "type": "string"
+                    }
+                }
+            },
+            "inputDataCategory":{
+                "type": "object",
+                "properties": {
+                    "name":{
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "parameters": {
+            "PathParamsCategory":{
+                "schema":{},
+                "required": true,
+                "name": "categoryId",
+                "in": "path",
+                "description": "Category Id"
+            }
+        }
+    }
+}
