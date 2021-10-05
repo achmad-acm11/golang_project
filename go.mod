@@ -1,5 +1,6 @@
 module golang-restful-api
 
+// +heroku goVersion go
 go 1.17
 
 require (
