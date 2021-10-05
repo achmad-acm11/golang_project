@@ -8,12 +8,14 @@ import (
 	"golang-restful-api/repository"
 	"golang-restful-api/service"
 	"net/http"
+	"os"
 
 	"github.com/go-playground/validator"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
+	port := os.Getenv("PORT")
 	db := app.NewDB()
 	validate := validator.New()
 
@@ -27,7 +29,8 @@ func main() {
 	router := app.NewRouter(categoryController)
 
 	server := http.Server{
-		Addr:    "https://golang-project-test.herokuapp.com",
+		// Addr:    "localhost:3000",
+		Addr:    ":" + port,
 		Handler: middleware.NewAuthMiddleware(router),
 	}
 
